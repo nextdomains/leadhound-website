@@ -8,6 +8,7 @@
     "start:python": "python server.py",
     "dev": "node server.js",
     "build": "node scripts/build.js",
+    "build:vercel": "npm run build && node scripts/build-vercel-output.js",
     "lint": "node scripts/validate.js",
     "test": "node scripts/validate.js"
   },

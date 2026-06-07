@@ -3,19 +3,8 @@ const path = require("path");
 
 const root = path.resolve(__dirname, "..");
 const dist = path.join(root, "dist");
-
-const include = [
-  "index.html",
-  "netlify-form.html",
-  "privacy.html",
-  "terms.html",
-  "styles.css",
-  "script.js",
-  "content.json",
-  "sanity-config.js",
-  "sanity-config.example.js",
-  "assets"
-];
+const output = path.join(root, ".vercel", "output");
+const outputStatic = path.join(output, "static");
 
 function copyRecursive(source, target) {
   const stat = fs.statSync(source);
@@ -30,11 +19,23 @@ function copyRecursive(source, target) {
   fs.copyFileSync(source, target);
 }
 
-fs.rmSync(dist, { recursive: true, force: true });
-fs.mkdirSync(dist, { recursive: true });
+fs.rmSync(output, { recursive: true, force: true });
+fs.mkdirSync(outputStatic, { recursive: true });
+copyRecursive(dist, outputStatic);
 
-for (const item of include) {
-  copyRecursive(path.join(root, item), path.join(dist, item));
-}
+fs.writeFileSync(
+  path.join(output, "config.json"),
+  JSON.stringify(
+    {
+      version: 3,
+      routes: [
+        { handle: "filesystem" },
+        { src: "/(.*)", dest: "/index.html" }
+      ]
+    },
+    null,
+    2
+  )
+);
 
-console.log(`Built static site to ${dist}`);
+console.log(`Built Vercel static output to ${output}`);

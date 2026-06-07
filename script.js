@@ -338,10 +338,12 @@ leadForm?.addEventListener("submit", async (event) => {
 
   try {
     formStatus.textContent = "Sending...";
-    const response = await fetch("/", {
+    const endpoint = leadForm.getAttribute("action") || "/";
+    const response = await fetch(endpoint, {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData).toString()
+      body: new URLSearchParams(formData).toString(),
+      mode: "cors"
     });
     if (!response.ok) throw new Error("Submission failed.");
     leadForm.reset();
