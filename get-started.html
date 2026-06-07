@@ -126,16 +126,16 @@
                 <label>Last Name<input name="lastName" autocomplete="family-name" required></label>
                 <label>Business Name<input name="businessName" autocomplete="organization" required></label>
                 <label>Website<input name="website" type="url" placeholder="https://example.com"></label>
-                <label class="wide">Industry<input name="industry" required placeholder="Finance, trades, property, B2B, healthcare..."></label>
+                <label class="wide">Industry<select name="industry" required><option value="">Select industry</option><option>Mortgage &amp; Finance</option><option>Solar</option><option>Legal</option><option>Real Estate</option><option>Insurance</option><option>Trades</option><option>Ecommerce</option><option>Other</option></select></label>
               </div>
             </fieldset>
 
             <fieldset class="form-step" data-step="1">
               <legend>Lead Requirements</legend>
               <div class="field-grid">
-                <label>Lead Type<select name="leadType" required><option value="">Select lead type</option><option>Pay-per-lead campaigns</option><option>SMS verified leads</option><option>Targeted data lists</option><option>Lead funnel build</option><option>CRM lead routing</option></select></label>
-                <label>Monthly Lead Target<input name="monthlyLeadTarget" inputmode="numeric" placeholder="50" required></label>
-                <label class="wide">Monthly Ad Spend<select name="monthlyAdSpend" required><option value="">Select spend range</option><option value="0">No current ad spend</option><option value="1000">$1k-$5k</option><option value="5001">$5k-$10k</option><option value="10000">$10k+</option></select></label>
+                <label>Lead Type<select name="leadType" required><option value="">Select lead type</option><option>Pay Per Lead</option><option>Appointment Bookings</option><option>CRM Setup</option><option>Lead Lists</option><option>Not Sure</option></select></label>
+                <label>Monthly Lead Target<select name="monthlyLeadTarget" required><option value="">Select target</option><option value="10-25">10-25</option><option value="25-50">25-50</option><option value="50-100">50-100</option><option value="100+">100+</option></select></label>
+                <label class="wide">Monthly Ad Spend<select name="monthlyAdSpend" required><option value="">Select spend range</option><option value="$0-$1k">$0-$1k</option><option value="$1k-$5k">$1k-$5k</option><option value="$5k-$20k">$5k-$20k</option><option value="$20k+">$20k+</option></select></label>
               </div>
             </fieldset>
 
@@ -144,7 +144,7 @@
               <div class="field-grid">
                 <label>Email<input name="email" type="email" autocomplete="email" required></label>
                 <label>Phone<input name="phone" autocomplete="tel" required></label>
-                <label>Preferred Contact Method<select name="preferredContactMethod" required><option value="">Select method</option><option>Email</option><option>Phone</option><option>SMS</option></select></label>
+                <label>Preferred Contact Method<select name="preferredContactMethod" required><option value="">Select method</option><option>Phone</option><option>Email</option><option>SMS</option></select></label>
                 <label>Best Time To Contact<input name="bestTimeToContact" placeholder="Weekday mornings" required></label>
                 <label class="wide">Message<textarea name="message" rows="5" placeholder="Tell us what you want to achieve."></textarea></label>
               </div>
@@ -168,6 +168,7 @@
             <p class="eyebrow">Request received</p>
             <h2>Thanks. Your LeadHound strategy request is in.</h2>
             <p data-lead-result>We will review your details and contact you shortly.</p>
+            <div class="strategy-report" data-strategy-report hidden></div>
             <a class="btn btn-primary" href="#" data-calendly-link target="_blank" rel="noopener">Book Your Strategy Call</a>
           </div>
         </div>

@@ -41,6 +41,15 @@ export default defineType({
     defineField({name: 'utmCampaign', title: 'UTM Campaign', type: 'string'}),
     defineField({name: 'utmContent', title: 'UTM Content', type: 'string'}),
     defineField({name: 'utmTerm', title: 'UTM Term', type: 'string'}),
+    defineField({name: 'strategyReport', title: 'Strategy Report', type: 'object', fields: [
+      defineField({name: 'industry', title: 'Industry', type: 'string'}),
+      defineField({name: 'recommendedMonthlyBudget', title: 'Recommended Monthly Budget', type: 'string'}),
+      defineField({name: 'estimatedMonthlyLeads', title: 'Estimated Monthly Leads', type: 'string'}),
+      defineField({name: 'recommendedChannels', title: 'Recommended Channels', type: 'array', of: [{type: 'string'}]}),
+      defineField({name: 'suggestedFunnelType', title: 'Suggested Funnel Type', type: 'string'}),
+      defineField({name: 'leadScore', title: 'Lead Score', type: 'string'}),
+      defineField({name: 'nextBestAction', title: 'Next Best Action', type: 'text', rows: 2}),
+    ]}),
   ],
   preview: {
     select: {

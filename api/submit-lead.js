@@ -35,6 +35,21 @@ function parseNumber(value) {
   return Number(cleaned || 0);
 }
 
+function targetValue(value) {
+  const text = String(value || "");
+  if (text.includes("100+")) return 100;
+  const matches = text.match(/\d+/g);
+  return matches?.length ? Number(matches[matches.length - 1]) : 0;
+}
+
+function spendValue(value) {
+  const text = String(value || "").toLowerCase();
+  if (text.includes("20k")) return 20000;
+  if (text.includes("5k") && text.includes("20k")) return 5001;
+  if (text.includes("1k") && text.includes("5k")) return 1000;
+  return parseNumber(value);
+}
+
 function isValidEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
@@ -67,12 +82,34 @@ function requiredEnv() {
 
 function scoreLead(data) {
   const hasWebsite = Boolean(data.website);
-  const spend = parseNumber(data.monthlyAdSpend);
-  const target = parseNumber(data.monthlyLeadTarget);
+  const spend = spendValue(data.monthlyAdSpend);
+  const target = targetValue(data.monthlyLeadTarget);
 
   if (hasWebsite && spend > 5000 && target > 50) return "High";
   if (hasWebsite && spend >= 1000 && spend <= 5000) return "Medium";
   return "Low";
+}
+
+function growthReport(data, leadScore) {
+  const spend = spendValue(data.monthlyAdSpend);
+  const target = targetValue(data.monthlyLeadTarget);
+  const industry = data.industry || "General";
+  const channels = ["Landing Pages", "CRM Automation"];
+
+  if (["Mortgage & Finance", "Legal", "Insurance"].includes(industry)) channels.unshift("Google Ads");
+  if (["Solar", "Real Estate", "Trades", "Ecommerce"].includes(industry)) channels.unshift("Meta Ads");
+  if (spend >= 5000) channels.push("Retargeting");
+  if (target >= 50) channels.push("SEO");
+
+  return {
+    industry,
+    recommendedMonthlyBudget: spend >= 5000 ? data.monthlyAdSpend : "$1k-$5k",
+    estimatedMonthlyLeads: target || "25-50",
+    recommendedChannels: Array.from(new Set(channels)),
+    suggestedFunnelType: data.leadType === "Not Sure" ? "Pay Per Lead discovery funnel" : `${data.leadType} funnel`,
+    leadScore,
+    nextBestAction: leadScore === "High" ? "Book a strategy call and map campaign launch priorities." : "Book a strategy call to refine targeting, budget, and lead quality rules."
+  };
 }
 
 async function sanityRequest(query, params = {}) {
@@ -201,6 +238,7 @@ module.exports = async function handler(req, res) {
     const leadId = await createLeadId();
     const submissionDate = new Date().toISOString();
     const leadScore = scoreLead(data);
+    const strategyReport = growthReport(data, leadScore);
     const leadDoc = {
       _type: "lead",
       leadId,
@@ -208,7 +246,8 @@ module.exports = async function handler(req, res) {
       monthlyTarget: data.monthlyLeadTarget,
       submissionDate,
       leadStatus: "New",
-      leadScore
+      leadScore,
+      strategyReport
     };
     delete leadDoc.monthlyLeadTarget;
 
@@ -275,6 +314,7 @@ module.exports = async function handler(req, res) {
       ok: true,
       leadId,
       leadScore,
+      strategyReport,
       calendlyUrl: process.env.CALENDLY_URL,
       emailStatus,
       emailWarning: emailErrors.join("; ")

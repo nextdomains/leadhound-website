@@ -257,6 +257,42 @@
   padding: clamp(28px, 5vw, 52px);
 }
 
+.strategy-report {
+  margin: 24px 0;
+  padding: 20px;
+  border: 1px solid rgba(0, 108, 255, 0.2);
+  border-radius: 8px;
+  background: rgba(0, 108, 255, 0.06);
+}
+
+.strategy-report h3 {
+  margin-bottom: 16px;
+}
+
+.strategy-report dl {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.strategy-report div {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 12px;
+}
+
+.strategy-report dt {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.strategy-report dd {
+  margin: 0;
+  font-weight: 800;
+}
+
 .funnel-band {
   padding: clamp(70px, 9vw, 120px) clamp(20px, 6vw, 76px);
   background: var(--brand-white);

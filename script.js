@@ -441,6 +441,23 @@ document.querySelector("[data-roi-cta]")?.addEventListener("click", () => {
 
 updateRoiCalculator();
 
+document.querySelectorAll("a[href*='calendly.com']").forEach((link) => {
+  link.addEventListener("click", () => trackEvent("calendly_clicked"));
+});
+
+document.querySelectorAll(".btn").forEach((button) => {
+  button.addEventListener("click", () => trackEvent("cta_click", { label: button.textContent.trim() }));
+});
+
+const feedItems = Array.from(document.querySelectorAll("[data-social-feed] span"));
+if (feedItems.length) {
+  let activeFeedIndex = 0;
+  window.setInterval(() => {
+    feedItems.forEach((item, index) => item.style.opacity = index === activeFeedIndex ? "1" : "0.72");
+    activeFeedIndex = (activeFeedIndex + 1) % feedItems.length;
+  }, 2600);
+}
+
 const leadForm = document.querySelector("[data-lead-form]");
 const formStatus = document.querySelector(".form-status");
 

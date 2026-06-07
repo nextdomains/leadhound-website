@@ -8,10 +8,23 @@ const requiredFiles = [
   "get-started.html",
   "get-started.css",
   "get-started.js",
+  "platform-pages.css",
+  "platform-pages.js",
+  "roi-calculator.html",
+  "mortgage-leads.html",
+  "solar-leads.html",
+  "legal-leads.html",
+  "insurance-leads.html",
+  "real-estate-leads.html",
+  "tradie-leads.html",
+  "lead-generation-blueprint.html",
+  "australian-lead-cost-report.html",
+  "blog.html",
   "styles.css",
   "script.js",
   "api/submit-lead.js",
   "api/public-config.js",
+  "api/lead-magnet.js",
   "admin.html",
   "admin.css",
   "admin.js",
@@ -42,7 +55,7 @@ for (const file of requiredFiles) {
 
 JSON.parse(read("content.json"));
 
-for (const file of ["script.js", "get-started.js", "admin.js", "sanity-config.js", "api/submit-lead.js", "api/public-config.js"]) {
+for (const file of ["script.js", "get-started.js", "platform-pages.js", "admin.js", "sanity-config.js", "api/submit-lead.js", "api/public-config.js", "api/lead-magnet.js"]) {
   new vm.Script(read(file), { filename: file });
 }
 
@@ -71,5 +84,8 @@ assert(read("sanity-config.js").includes('projectId: "nvlfyhr7"'), "Sanity proje
 assert(read("script.js").includes('document.querySelectorAll(".footer .contact-line")'), "Footer contact renderer is not targeting contact lines directly.");
 assert(read("get-started.html").includes('action="/api/submit-lead"') || read("get-started.js").includes('"/api/submit-lead"'), "Get started form is not wired to the Vercel API.");
 assert(read("sitemap.xml").includes("https://leadhound.net/get-started"), "Sitemap is missing /get-started.");
+assert(read("sitemap.xml").includes("https://leadhound.net/roi-calculator"), "Sitemap is missing /roi-calculator.");
+assert(read("index.html").includes('id="roi"'), "Homepage ROI anchor is missing.");
+assert(read("index.html").includes("LeadHound Assistant"), "Assistant placeholder is missing.");
 
 console.log("Validation passed.");

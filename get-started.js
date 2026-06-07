@@ -10,6 +10,7 @@ const progressPercent = document.querySelector("[data-progress-percent]");
 const reviewSummary = document.querySelector("[data-review-summary]");
 const thankYou = document.querySelector("[data-thank-you]");
 const calendlyLink = document.querySelector("[data-calendly-link]");
+const strategyReport = document.querySelector("[data-strategy-report]");
 let currentStep = 0;
 let publicConfig = {};
 let formStarted = false;
@@ -204,6 +205,21 @@ form.addEventListener("submit", async (event) => {
     form.hidden = true;
     thankYou.hidden = false;
     document.querySelector("[data-lead-result]").textContent = `Your Lead ID is ${result.leadId}. Lead score: ${result.leadScore}.`;
+    if (strategyReport && result.strategyReport) {
+      strategyReport.hidden = false;
+      strategyReport.innerHTML = `
+        <h3>Your LeadHound Growth Report</h3>
+        <dl>
+          <div><dt>Industry</dt><dd>${result.strategyReport.industry || "-"}</dd></div>
+          <div><dt>Recommended budget</dt><dd>${result.strategyReport.recommendedMonthlyBudget || "-"}</dd></div>
+          <div><dt>Estimated monthly leads</dt><dd>${result.strategyReport.estimatedMonthlyLeads || "-"}</dd></div>
+          <div><dt>Recommended channels</dt><dd>${(result.strategyReport.recommendedChannels || []).join(", ")}</dd></div>
+          <div><dt>Suggested funnel</dt><dd>${result.strategyReport.suggestedFunnelType || "-"}</dd></div>
+          <div><dt>Next action</dt><dd>${result.strategyReport.nextBestAction || "-"}</dd></div>
+        </dl>
+      `;
+      track("strategy_report_generated", { lead_id: result.leadId, lead_score: result.leadScore });
+    }
     if (result.calendlyUrl) calendlyLink.href = result.calendlyUrl;
   } catch (error) {
     errorBox.textContent = error.message || "Could not submit the form. Please email sales@leadhound.net.";

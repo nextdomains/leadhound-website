@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lead Generation ROI Calculator | LeadHound</title>
+    <meta name="description" content="Use the LeadHound ROI calculator to estimate Australian lead generation return, customer acquisition cost, and monthly revenue potential.">
+    <link rel="canonical" href="https://leadhound.net/roi-calculator">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Lead Generation ROI Calculator | LeadHound">
+    <meta property="og:description" content="Estimate lead generation ROI, monthly revenue, profit, and acquisition cost in AUD.">
+    <meta property="og:url" content="https://leadhound.net/roi-calculator">
+    <meta property="og:image" content="https://leadhound.net/assets/leadhound-social-preview.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://leadhound.net/assets/leadhound-social-preview.jpg">
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/platform-pages.css">
+  </head>
+  <body class="platform-page">
+    <header class="site-header is-scrolled">
+      <a class="brand" href="/#home" aria-label="LeadHound home"><img class="brand-logo" src="/assets/leadhound-logo-navbar.png" alt="LeadHound"></a>
+      <nav class="main-nav" aria-label="Primary navigation"><a href="/#services">Services</a><a href="/#roi">ROI</a><a href="/blog">Blog</a><a href="/get-started">Get Started</a></nav>
+      <div class="header-actions"><a class="btn btn-primary" href="/get-started">Get Started</a></div>
+    </header>
+    <main>
+      <section class="platform-hero">
+        <div class="platform-hero-inner">
+          <p class="eyebrow">Pay per lead calculator</p>
+          <h1>Estimate lead generation ROI before you scale spend.</h1>
+          <p>Model Australian lead generation return, customer acquisition cost, monthly leads, customers, revenue, and profit using simple funnel assumptions.</p>
+        </div>
+      </section>
+      <section id="roi" class="section-pad roi-section" data-roi-section>
+        <div class="section-heading center">
+          <p class="eyebrow">Lead generation ROI</p>
+          <h2>Run the numbers in AUD.</h2>
+          <p>Adjust your marketing budget, cost per lead, conversion rate, customer value, lead target, and close rate.</p>
+        </div>
+        <div class="roi-calculator" aria-label="LeadHound ROI calculator">
+          <div class="roi-inputs">
+            <div class="roi-control"><div><label for="roi-spend">Monthly marketing budget</label><span>AUD budget allocated to lead generation.</span></div><input type="range" min="1000" max="100000" step="500" value="10000" data-roi-field="monthlySpend"><input id="roi-spend" type="number" min="0" step="500" value="10000" data-roi-field="monthlySpend"></div>
+            <div class="roi-control"><div><label for="roi-cpl">Cost per lead</label><span>Estimated pay per lead cost.</span></div><input type="range" min="20" max="1000" step="5" value="120" data-roi-field="costPerLead"><input id="roi-cpl" type="number" min="1" step="5" value="120" data-roi-field="costPerLead"></div>
+            <div class="roi-control"><div><label for="roi-conversion">Lead-to-sale conversion rate</label><span>Percentage of leads that become sales opportunities or sales.</span></div><input type="range" min="1" max="80" step="1" value="12" data-roi-field="conversionRate"><input id="roi-conversion" type="number" min="0" max="100" step="1" value="12" data-roi-field="conversionRate"></div>
+            <div class="roi-control"><div><label for="roi-value">Average customer value</label><span>Average revenue from a new customer.</span></div><input type="range" min="250" max="100000" step="250" value="6000" data-roi-field="averageCustomerValue"><input id="roi-value" type="number" min="0" step="250" value="6000" data-roi-field="averageCustomerValue"></div>
+            <div class="roi-control"><div><label for="roi-target">Monthly lead target</label><span>Target volume for planning.</span></div><input type="range" min="10" max="1000" step="10" value="80" data-roi-field="monthlyLeadTarget"><input id="roi-target" type="number" min="0" step="10" value="80" data-roi-field="monthlyLeadTarget"></div>
+            <div class="roi-control"><div><label for="roi-close">Close rate</label><span>Sales close-rate lens.</span></div><input type="range" min="1" max="80" step="1" value="25" data-roi-field="closeRate"><input id="roi-close" type="number" min="0" max="100" step="1" value="25" data-roi-field="closeRate"></div>
+          </div>
+          <div class="roi-results" aria-live="polite">
+            <article class="roi-result-card highlight"><span>Estimated monthly revenue</span><strong data-roi-output="monthlyRevenue">A$0</strong></article>
+            <article class="roi-result-card"><span>Estimated monthly leads</span><strong data-roi-output="monthlyLeads">0</strong></article>
+            <article class="roi-result-card"><span>Estimated monthly customers</span><strong data-roi-output="monthlyCustomers">0</strong></article>
+            <article class="roi-result-card"><span>Estimated monthly profit</span><strong data-roi-output="monthlyProfit">A$0</strong></article>
+            <article class="roi-result-card"><span>Estimated ROI percentage</span><strong data-roi-output="roiPercent">0%</strong></article>
+            <article class="roi-result-card"><span>Estimated cost per acquisition</span><strong data-roi-output="costPerAcquisition">A$0</strong></article>
+            <p class="roi-disclaimer">Estimates are for illustration only and actual results may vary.</p>
+            <div class="roi-cta"><h3>Want us to calculate this for your business?</h3><a class="btn btn-primary" href="https://calendly.com/leadhound26" target="_blank" rel="noopener" data-roi-cta>Book Free Strategy Call</a></div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="/script.js"></script>
+  </body>
+</html>
