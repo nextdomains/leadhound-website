@@ -57,5 +57,17 @@ export default defineType({
         }),
       ],
     }),
+    defineField({
+      name: 'roi',
+      title: 'ROI Calculator',
+      type: 'object',
+      fields: [
+        defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
+        defineField({name: 'headline', title: 'Headline', type: 'text', rows: 2}),
+        defineField({name: 'subtext', title: 'Subtext', type: 'text', rows: 3}),
+        defineField({name: 'ctaText', title: 'CTA Text', type: 'string'}),
+        defineField({name: 'disclaimer', title: 'Disclaimer', type: 'text', rows: 2}),
+      ],
+    }),
   ],
 })

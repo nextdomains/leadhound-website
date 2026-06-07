@@ -38,6 +38,13 @@ const setHref = (selector, value) => {
   if (element && value) element.setAttribute("href", value);
 };
 
+const trackEvent = (eventName, params = {}) => {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: eventName, ...params });
+  if (typeof window.gtag === "function") window.gtag("event", eventName, params);
+  if (typeof window.fbq === "function") window.fbq("trackCustom", eventName, params);
+};
+
 const mergeContent = (base, update) => {
   if (!update || typeof update !== "object") return base;
   const output = Array.isArray(base) ? [...base] : { ...base };
@@ -74,6 +81,7 @@ function mapSanityContent(data) {
     mapped.hero = data.homepage.hero;
     mapped.stats = data.homepage.stats;
     mapped.leadFunnels = data.homepage.leadFunnels;
+    mapped.roi = data.homepage.roi;
   }
 
   if (data.services) {
@@ -221,6 +229,12 @@ function renderContent(content) {
       .join("");
   }
 
+  setText(".roi-section .eyebrow", content.roi?.eyebrow);
+  setText(".roi-section h2", content.roi?.headline);
+  setText(".roi-section .section-heading p:not(.eyebrow)", content.roi?.subtext);
+  setText(".roi-cta h3", content.roi?.ctaText);
+  setText(".roi-disclaimer", content.roi?.disclaimer);
+
   const logoRow = document.querySelector(".partners-section .logo-row");
   if (logoRow && Array.isArray(content.partners)) {
     logoRow.innerHTML = content.partners.map((partner) => `<span>${escapeHtml(partner)}</span>`).join("");
@@ -328,6 +342,104 @@ async function loadCmsContent() {
 }
 
 loadCmsContent();
+
+const roiSection = document.querySelector("[data-roi-section]");
+const roiInputs = Array.from(document.querySelectorAll("[data-roi-field]"));
+const roiOutputs = {
+  monthlyLeads: document.querySelector('[data-roi-output="monthlyLeads"]'),
+  monthlyCustomers: document.querySelector('[data-roi-output="monthlyCustomers"]'),
+  monthlyRevenue: document.querySelector('[data-roi-output="monthlyRevenue"]'),
+  monthlyProfit: document.querySelector('[data-roi-output="monthlyProfit"]'),
+  roiPercent: document.querySelector('[data-roi-output="roiPercent"]'),
+  costPerAcquisition: document.querySelector('[data-roi-output="costPerAcquisition"]')
+};
+
+const numberFormatter = new Intl.NumberFormat("en-AU", {
+  maximumFractionDigits: 1
+});
+
+const formatAud = (value) => `A$${new Intl.NumberFormat("en-AU", { maximumFractionDigits: 0 }).format(Number.isFinite(value) ? value : 0)}`;
+const formatNumber = (value) => numberFormatter.format(Number.isFinite(value) ? value : 0);
+
+function readRoiValue(field) {
+  const input = roiInputs.find((element) => element.dataset.roiField === field && element.type === "number");
+  return Number(input?.value || 0);
+}
+
+function syncRoiField(field, value) {
+  roiInputs
+    .filter((element) => element.dataset.roiField === field)
+    .forEach((element) => {
+      element.value = value;
+    });
+}
+
+function pulseRoiCards() {
+  document.querySelectorAll(".roi-result-card").forEach((card) => {
+    card.classList.remove("is-updated");
+    window.requestAnimationFrame(() => {
+      card.classList.add("is-updated");
+      window.setTimeout(() => card.classList.remove("is-updated"), 260);
+    });
+  });
+}
+
+function updateRoiCalculator(changedField) {
+  if (!roiInputs.length) return;
+
+  const monthlySpend = readRoiValue("monthlySpend");
+  const costPerLead = readRoiValue("costPerLead");
+  const conversionRate = readRoiValue("conversionRate") / 100;
+  const closeRate = readRoiValue("closeRate") / 100;
+  const monthlyLeadTarget = readRoiValue("monthlyLeadTarget");
+  const averageCustomerValue = readRoiValue("averageCustomerValue");
+
+  const spendBasedLeads = costPerLead > 0 ? monthlySpend / costPerLead : 0;
+  const monthlyLeads = monthlyLeadTarget > 0 ? Math.min(spendBasedLeads, monthlyLeadTarget) : spendBasedLeads;
+  const monthlyCustomers = monthlyLeads * conversionRate * closeRate;
+  const monthlyRevenue = monthlyCustomers * averageCustomerValue;
+  const monthlyProfit = monthlyRevenue - monthlySpend;
+  const roiPercent = monthlySpend > 0 ? (monthlyProfit / monthlySpend) * 100 : 0;
+  const costPerAcquisition = monthlyCustomers > 0 ? monthlySpend / monthlyCustomers : 0;
+
+  if (roiOutputs.monthlyLeads) roiOutputs.monthlyLeads.textContent = formatNumber(monthlyLeads);
+  if (roiOutputs.monthlyCustomers) roiOutputs.monthlyCustomers.textContent = formatNumber(monthlyCustomers);
+  if (roiOutputs.monthlyRevenue) roiOutputs.monthlyRevenue.textContent = formatAud(monthlyRevenue);
+  if (roiOutputs.monthlyProfit) roiOutputs.monthlyProfit.textContent = formatAud(monthlyProfit);
+  if (roiOutputs.roiPercent) roiOutputs.roiPercent.textContent = `${formatNumber(roiPercent)}%`;
+  if (roiOutputs.costPerAcquisition) roiOutputs.costPerAcquisition.textContent = formatAud(costPerAcquisition);
+
+  if (changedField) pulseRoiCards();
+}
+
+roiInputs.forEach((input) => {
+  input.addEventListener("input", () => {
+    syncRoiField(input.dataset.roiField, input.value);
+    updateRoiCalculator(input.dataset.roiField);
+    trackEvent("calculator_input_changed", { field: input.dataset.roiField });
+  });
+});
+
+if (roiSection && "IntersectionObserver" in window) {
+  let roiViewed = false;
+  const roiObserver = new IntersectionObserver(
+    (entries) => {
+      if (!roiViewed && entries.some((entry) => entry.isIntersecting)) {
+        roiViewed = true;
+        trackEvent("roi_calculator_viewed");
+        roiObserver.disconnect();
+      }
+    },
+    { threshold: 0.35 }
+  );
+  roiObserver.observe(roiSection);
+}
+
+document.querySelector("[data-roi-cta]")?.addEventListener("click", () => {
+  trackEvent("roi_cta_clicked", { label: "Book Free Strategy Call" });
+});
+
+updateRoiCalculator();
 
 const leadForm = document.querySelector("[data-lead-form]");
 const formStatus = document.querySelector(".form-status");
