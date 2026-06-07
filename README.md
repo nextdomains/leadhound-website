@@ -113,6 +113,13 @@ npm install
 npm run dev
 ```
 
+Seed the Studio with the current LeadHound website content:
+
+```powershell
+cd sanity
+npx sanity documents create seed-leadhound-content.json --replace
+```
+
 The website will load Sanity content when documents exist and CORS is configured. If Sanity is empty or unavailable, it falls back to `content.json` and the hardcoded HTML.
 
 ## Sanity Studio Content To Add
@@ -153,7 +160,7 @@ In Sanity Manage -> API -> CORS, add these exact origins with no trailing slash:
 http://localhost:3333
 http://localhost:3000
 http://localhost:5173
-https://your-live-domain.com
+https://leadhound-website.netlify.app
 https://your-deployed-studio-url.sanity.studio
 ```
 
@@ -162,12 +169,18 @@ Credentials settings:
 - `http://localhost:3333` with credentials
 - `http://localhost:3000` without credentials
 - `http://localhost:5173` without credentials
-- Your live website domain without credentials
+- `https://leadhound-website.netlify.app` without credentials
 - Your deployed Studio URL with credentials
 
 ## Deploy Website
 
 Deploy the public website to Netlify or Vercel.
+
+Current Netlify production URL:
+
+```text
+https://leadhound-website.netlify.app
+```
 
 Netlify reads `netlify.toml`:
 
