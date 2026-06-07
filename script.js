@@ -109,7 +109,7 @@ async function loadSanityContent() {
   const config = window.LEADHOUND_SANITY || {};
   if (!config.projectId || !config.dataset) return null;
 
-  const apiVersion = config.apiVersion || "2025-01-01";
+  const apiVersion = config.apiVersion || "2026-06-07";
   const host = config.useCdn === false ? "api" : "apicdn";
   const query = `{
     "site": *[_type == "siteSettings"][0],
@@ -334,19 +334,17 @@ const formStatus = document.querySelector(".form-status");
 leadForm?.addEventListener("submit", async (event) => {
   event.preventDefault();
   const formData = new FormData(leadForm);
-  const payload = Object.fromEntries(formData.entries());
 
   try {
     formStatus.textContent = "Sending...";
-    const response = await fetch("/api/submissions", {
+    const response = await fetch("/", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString()
     });
-    const result = await response.json();
-    if (!response.ok || !result.ok) throw new Error(result.error || "Submission failed.");
+    if (!response.ok) throw new Error("Submission failed.");
     leadForm.reset();
-    formStatus.textContent = "Thanks. Your enquiry has been saved.";
+    formStatus.textContent = "Thanks. Your enquiry has been sent.";
   } catch (error) {
     formStatus.textContent = "Could not submit here. Please email support@leadhound.com.au.";
   }

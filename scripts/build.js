@@ -6,6 +6,8 @@ const dist = path.join(root, "dist");
 
 const include = [
   "index.html",
+  "privacy.html",
+  "terms.html",
   "styles.css",
   "script.js",
   "content.json",

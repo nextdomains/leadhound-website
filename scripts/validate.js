@@ -12,7 +12,11 @@ const requiredFiles = [
   "admin.js",
   "content.json",
   "sanity-config.js",
-  "assets/leadhound-logo-navbar.png"
+  "privacy.html",
+  "terms.html",
+  "assets/leadhound-logo-navbar.png",
+  "assets/favicon.png",
+  "assets/leadhound-social-preview.jpg"
 ];
 
 function assert(condition, message) {
@@ -46,5 +50,14 @@ assert(css.includes("--brand-blue: #006cff;"), "Missing --brand-blue CSS variabl
 assert(css.includes("--brand-silver: #d7dce2;"), "Missing --brand-silver CSS variable.");
 assert(css.includes("--brand-white: #ffffff;"), "Missing --brand-white CSS variable.");
 assert(css.includes(".site-header.is-scrolled"), "Sticky scroll header state is missing.");
+assert(!css.includes("left: min(calc(100vw - 62px), 330px);"), "Mobile menu button still uses risky left positioning.");
+assert(css.includes("right: 18px;"), "Mobile menu button is missing right alignment.");
+assert(html.includes('data-netlify="true"'), "Lead form is missing Netlify Forms support.");
+assert(html.includes('name="leadhound-enquiry"'), "Lead form is missing a production form name.");
+assert(html.includes('href="privacy.html"'), "Privacy Policy footer link is missing.");
+assert(html.includes('href="terms.html"'), "Terms footer link is missing.");
+assert(html.includes('property="og:image" content="assets/leadhound-social-preview.jpg"'), "Open Graph image is missing.");
+assert(html.includes('name="twitter:card" content="summary_large_image"'), "Twitter card meta is missing.");
+assert(read("sanity-config.js").includes('apiVersion: "2026-06-07"'), "Sanity API version is not updated.");
 
 console.log("Validation passed.");

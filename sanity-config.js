@@ -3,6 +3,6 @@
 window.LEADHOUND_SANITY = {
   projectId: "",
   dataset: "production",
-  apiVersion: "2025-01-01",
+  apiVersion: "2026-06-07",
   useCdn: true
 };

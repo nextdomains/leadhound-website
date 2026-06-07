@@ -2,7 +2,7 @@
   "site": {
     "brand": "LeadHound",
     "title": "LeadHound | Verified Lead Generation",
-    "description": "LeadHound delivers verified leads, targeted data lists, campaign management, and CRM-ready workflows for growth-focused service businesses.",
+    "description": "LeadHound builds verified lead generation funnels, targeted data campaigns, and CRM-ready workflows for growth-focused Australian service businesses.",
     "email": "support@leadhound.com.au",
     "phone": "(07) 3188 6611"
   },
@@ -15,10 +15,10 @@
     "badges": ["SMS verified", "CRM ready", "Volume controlled"]
   },
   "stats": [
-    { "value": "1,000+", "label": "Companies supported" },
-    { "value": "1M+", "label": "Leads generated" },
-    { "value": "$24M+", "label": "Ad spend managed" },
-    { "value": "5 years", "label": "Performance history" }
+    { "value": "Quality-first", "label": "Lead generation systems" },
+    { "value": "Intent-led", "label": "Campaign targeting" },
+    { "value": "CRM-ready", "label": "Lead delivery workflows" },
+    { "value": "Local support", "label": "Australian business focus" }
   ],
   "intro": {
     "eyebrow": "Why teams switch",

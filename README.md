@@ -76,7 +76,7 @@ This project currently has no required frontend dependencies. If `npm` is unavai
 ```text
 SANITY_PROJECT_ID=your_project_id
 SANITY_DATASET=production
-SANITY_API_VERSION=2025-01-01
+SANITY_API_VERSION=2026-06-07
 PUBLIC_SITE_URL=https://your-domain.com
 ```
 
@@ -93,7 +93,7 @@ SANITY_STUDIO_DATASET=production
 window.LEADHOUND_SANITY = {
   projectId: "your_project_id",
   dataset: "production",
-  apiVersion: "2025-01-01",
+  apiVersion: "2026-06-07",
   useCdn: true
 };
 ```
