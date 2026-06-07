@@ -160,6 +160,7 @@ In Sanity Manage -> API -> CORS, add these exact origins with no trailing slash:
 http://localhost:3333
 http://localhost:3000
 http://localhost:5173
+https://leadify-clone-five.vercel.app
 https://leadhound-website.netlify.app
 https://your-deployed-studio-url.sanity.studio
 ```
@@ -169,6 +170,7 @@ Credentials settings:
 - `http://localhost:3333` with credentials
 - `http://localhost:3000` without credentials
 - `http://localhost:5173` without credentials
+- `https://leadify-clone-five.vercel.app` without credentials
 - `https://leadhound-website.netlify.app` without credentials
 - Your deployed Studio URL with credentials
 
@@ -180,6 +182,12 @@ Current Netlify production URL:
 
 ```text
 https://leadhound-website.netlify.app
+```
+
+Current Vercel production URL:
+
+```text
+https://leadify-clone-five.vercel.app
 ```
 
 Netlify reads `netlify.toml`:
