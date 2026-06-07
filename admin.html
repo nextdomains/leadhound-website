@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LeadHound CMS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+  </head>
+  <body>
+    <header class="admin-header">
+      <div class="admin-brand">
+        <img src="assets/leadhound-logo-navbar.png" alt="LeadHound">
+        <div>
+        <span class="kicker">CMS</span>
+        <h1>LeadHound Content Studio</h1>
+        </div>
+      </div>
+      <nav>
+        <a href="/" target="_blank" rel="noreferrer">View Site</a>
+        <button id="reloadButton" type="button">Reload</button>
+        <button id="saveButton" type="button">Save Changes</button>
+      </nav>
+    </header>
+
+    <main class="admin-shell">
+      <aside class="panel">
+        <h2>Editable Content</h2>
+        <p>Edit the site content below. Arrays control repeating sections such as services, pricing cards, reviews, insights, stats, and FAQs.</p>
+        <div id="status" class="status">Loading content...</div>
+        <div class="tips">
+          <h3>Tips</h3>
+          <p>Keep quotation marks around text values.</p>
+          <p>Use commas between list items.</p>
+          <p>Save, then refresh the public site tab.</p>
+        </div>
+      </aside>
+
+      <section class="editor-card">
+        <div class="editor-toolbar">
+          <h2>content.json</h2>
+          <span id="savedAt">Unsaved</span>
+        </div>
+        <textarea id="contentEditor" spellcheck="false" aria-label="CMS content JSON"></textarea>
+      </section>
+    </main>
+
+    <section class="submissions">
+      <div class="editor-toolbar">
+        <h2>Lead Submissions</h2>
+        <button id="loadSubmissionsButton" type="button">Refresh</button>
+      </div>
+      <div id="submissionsList" class="submission-list">No submissions loaded.</div>
+    </section>
+
+    <script src="admin.js"></script>
+  </body>
+</html>

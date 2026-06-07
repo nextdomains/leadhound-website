@@ -1,0 +1,16 @@
+{
+  "name": "leadhound-cms-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "LeadHound static marketing website with Sanity-ready CMS integration and local preview server.",
+  "scripts": {
+    "start": "node server.js",
+    "start:python": "python server.py",
+    "dev": "node server.js",
+    "build": "node scripts/build.js",
+    "lint": "node scripts/validate.js",
+    "test": "node scripts/validate.js"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

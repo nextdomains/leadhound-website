@@ -1,0 +1,209 @@
+{
+  "site": {
+    "brand": "LeadHound",
+    "title": "LeadHound | Verified Lead Generation",
+    "description": "LeadHound delivers verified leads, targeted data lists, campaign management, and CRM-ready workflows for growth-focused service businesses.",
+    "email": "support@leadhound.com.au",
+    "phone": "(07) 3188 6611"
+  },
+  "hero": {
+    "eyebrow": "Verified lead generation for serious sales teams",
+    "headline": "Qualified leads without the chasing, sorting, or guesswork.",
+    "body": "LeadHound builds managed acquisition funnels, verifies every enquiry, and sends sales-ready opportunities straight into your workflow.",
+    "primaryCta": "Book a Strategy Call",
+    "secondaryCta": "See How It Works",
+    "badges": ["SMS verified", "CRM ready", "Volume controlled"]
+  },
+  "stats": [
+    { "value": "1,000+", "label": "Companies supported" },
+    { "value": "1M+", "label": "Leads generated" },
+    { "value": "$24M+", "label": "Ad spend managed" },
+    { "value": "5 years", "label": "Performance history" }
+  ],
+  "intro": {
+    "eyebrow": "Why teams switch",
+    "headline": "Stop buying noise. Start receiving opportunities.",
+    "body": "LeadHound combines campaign management, verification, delivery controls, and reporting into one clear lead-to-sale workflow.",
+    "features": [
+      {
+        "number": "01",
+        "title": "Verified before delivery",
+        "body": "Every enquiry is checked for intent, duplication, and basic data quality before it reaches your team."
+      },
+      {
+        "number": "02",
+        "title": "Built around sales capacity",
+        "body": "Set lead caps, control regions, and receive the right volume at the right time."
+      },
+      {
+        "number": "03",
+        "title": "Managed by growth operators",
+        "body": "We launch, monitor, and optimise campaigns so your team can focus on contact and conversion."
+      }
+    ]
+  },
+  "platform": {
+    "eyebrow": "The LeadHound platform",
+    "headline": "A cleaner path from click to qualified conversation.",
+    "body": "Bring campaign performance, lead verification, delivery rules, and reporting into one clear operating system for growth.",
+    "bullets": [
+      "Live delivery into inboxes, CRMs, and notification channels",
+      "Campaign tracking with clear volume and quality signals",
+      "Targeting across service, finance, property, and B2B verticals"
+    ],
+    "cta": "Get a Quote"
+  },
+  "services": {
+    "eyebrow": "Services",
+    "headline": "Everything you need to keep the pipeline moving.",
+    "items": [
+      {
+        "tag": "Lead funnels",
+        "title": "Pay-per-lead campaigns",
+        "body": "Fresh enquiries generated through managed acquisition campaigns, filtered and delivered against your sales criteria."
+      },
+      {
+        "tag": "Premium quality",
+        "title": "SMS verified leads",
+        "body": "Reduce wasted calls with an additional verification layer that helps confirm contact details before delivery."
+      },
+      {
+        "tag": "Data lists",
+        "title": "Targeted reactivation",
+        "body": "Reach prospects who have shown prior intent with custom filters for location, industry, and demographic requirements."
+      },
+      {
+        "tag": "Operations",
+        "title": "CRM and alerts",
+        "body": "Route leads into the tools your team already uses, with instant notifications and clear delivery rules."
+      }
+    ]
+  },
+  "leadFunnels": {
+    "eyebrow": "Lead funnels",
+    "headline": "Best-practice funnels that turn attention into booked conversations.",
+    "body": "Every campaign is built around the same disciplined path: attract the right audience, qualify intent, verify contact details, and deliver leads while interest is fresh.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Targeted traffic",
+        "body": "Campaigns are matched to the channel, region, and intent signals most likely to produce qualified enquiries."
+      },
+      {
+        "number": "02",
+        "title": "Conversion landing page",
+        "body": "Each funnel uses focused messaging, strong proof, and a clear offer so visitors know exactly what to do next."
+      },
+      {
+        "number": "03",
+        "title": "Smart qualification",
+        "body": "Forms collect the practical details your sales team needs without adding friction that hurts conversion."
+      },
+      {
+        "number": "04",
+        "title": "Verification and routing",
+        "body": "Leads are checked, deduplicated, capped by volume, and pushed into your CRM or inbox in real time."
+      }
+    ]
+  },
+  "partners": ["BIZCAP", "Prospa", "AUSLOANS", "AFR", "Yahoo Finance"],
+  "pricing": {
+    "eyebrow": "Pricing",
+    "headline": "Lead packages built around your sales motion.",
+    "body": "No bloated retainers. Start with the lead type, quality layer, and daily volume that makes sense for your team.",
+    "plans": [
+      {
+        "name": "Starter",
+        "description": "For teams testing a new vertical or region.",
+        "price": "Custom",
+        "features": ["Weekly lead allocation", "Email delivery", "Simple performance reporting"],
+        "cta": "Enquire",
+        "featured": false
+      },
+      {
+        "name": "Verified Growth",
+        "description": "For teams that need cleaner volume and delivery control.",
+        "price": "Quote",
+        "features": ["SMS verified leads", "CRM and alert delivery", "Daily caps and campaign tuning"],
+        "cta": "Get Started",
+        "featured": true
+      },
+      {
+        "name": "Managed Scale",
+        "description": "For established teams ready to expand pipeline.",
+        "price": "Custom",
+        "features": ["Campaign build and optimisation", "Lead quality reviews", "Regular growth check-ins"],
+        "cta": "Book Call",
+        "featured": false
+      }
+    ]
+  },
+  "reviews": {
+    "eyebrow": "Customer proof",
+    "headline": "Built for businesses that cannot afford messy lead flow.",
+    "body": "Cleaner handoffs, fewer dead ends, and a team that understands sales velocity.",
+    "items": [
+      {
+        "name": "Jeneya Kennett",
+        "role": "Director - Pink Loans Financial",
+        "quote": "We have been working with LeadHound since launching our finance company and have seen strong, consistent lead flow.",
+        "image": "https://framerusercontent.com/images/xlkKCFJpIEdw16BvcglpX1Cmo.png"
+      },
+      {
+        "name": "Mark Ragel",
+        "role": "CEO",
+        "quote": "The team understands lead quality, volume management, and what sales teams actually need to move quickly.",
+        "image": "https://framerusercontent.com/images/K7yV8XR5jWSl36ZfdxyzIpnYBz8.png?width=4096&height=4096"
+      }
+    ]
+  },
+  "insights": {
+    "eyebrow": "Insights",
+    "headline": "Latest from the growth desk",
+    "items": [
+      {
+        "title": "SMS verification now rolling across new verticals",
+        "tag": "Lead quality",
+        "image": "https://framerusercontent.com/images/TaSy6CnGFpUtNVXYDGUjjiijms.png"
+      },
+      {
+        "title": "How high-intent data unlocks hidden revenue",
+        "tag": "Targeting",
+        "image": "https://framerusercontent.com/images/Q7GvoH3a2QkaGO4EWasD7hY1GU.png"
+      },
+      {
+        "title": "Save time by routing leads straight to action",
+        "tag": "Sales ops",
+        "image": "https://framerusercontent.com/images/Kl93WkDPpR8nefIXip9QBQ87M.png?width=964&height=1080"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "headline": "Questions before you start?",
+    "items": [
+      {
+        "question": "How does LeadHound verify leads?",
+        "answer": "We use layered checks to reduce spam, duplicates, and low-intent enquiries before delivery."
+      },
+      {
+        "question": "Can leads go straight into our CRM?",
+        "answer": "Yes. Leads can be delivered to inboxes, CRMs, dashboards, or notification workflows depending on your setup."
+      },
+      {
+        "question": "Can we control daily volume?",
+        "answer": "Yes. You can set lead caps and adjust volume based on your team's contact capacity."
+      }
+    ]
+  },
+  "cta": {
+    "eyebrow": "Ready when you are",
+    "headline": "Fill your pipeline with cleaner, verified leads.",
+    "body": "Tell us your target market, sales capacity, and ideal lead type. We will shape a plan around quality, speed, and conversion.",
+    "button": "Book Your Free Strategy Call"
+  },
+  "footer": {
+    "body": "LeadHound helps service-based brands generate, verify, and deliver high-intent leads across the full sales process.",
+    "copyright": "LeadHound 2026. All Rights Reserved."
+  }
+}

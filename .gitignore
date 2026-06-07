@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Environment and local config
+.env
+.env.*
+!/.env.example
+sanity/.env
+sanity/.env.*
+!sanity/.env.example
+
+# Local runtime data
+submissions.json
+*.log
+
+# QA screenshots and generated diagnostics
+qa-*.png
+desktop.png
+mobile.png
+
+# Build output
+dist/
+sanity/.sanity/
+.vercel/
+.netlify/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
