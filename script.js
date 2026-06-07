@@ -346,6 +346,6 @@ leadForm?.addEventListener("submit", async (event) => {
     leadForm.reset();
     formStatus.textContent = "Thanks. Your enquiry has been sent.";
   } catch (error) {
-    formStatus.textContent = "Could not submit here. Please email support@leadhound.com.au.";
+    formStatus.textContent = "Could not submit here. Please email sales@leadhound.net.";
   }
 });
