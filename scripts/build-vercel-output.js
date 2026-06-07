@@ -46,6 +46,14 @@ fs.writeFileSync(
       version: 3,
       routes: [
         {
+          src: "/(.*)",
+          has: [{ type: "host", value: "leadify-clone-five.vercel.app" }],
+          status: 308,
+          headers: {
+            Location: "https://leadhound.net/$1"
+          }
+        },
+        {
           src: "/api/(.*)",
           dest: "/api/$1"
         },

@@ -42,4 +42,14 @@ for (const item of include) {
   copyRecursive(path.join(root, item), path.join(dist, item));
 }
 
+const cleanHtmlPages = {
+  "get-started": "get-started.html",
+  privacy: "privacy.html",
+  terms: "terms.html"
+};
+
+for (const [route, file] of Object.entries(cleanHtmlPages)) {
+  copyRecursive(path.join(root, file), path.join(dist, route, "index.html"));
+}
+
 console.log(`Built static site to ${dist}`);

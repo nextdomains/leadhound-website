@@ -9,42 +9,52 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Get Started | LeadHound">
     <meta property="og:description" content="Book a free LeadHound strategy call and tell us what kind of leads your business needs.">
-    <meta property="og:image" content="assets/leadhound-social-preview.jpg">
+    <meta property="og:image" content="https://leadhound.net/assets/leadhound-social-preview.jpg">
     <meta property="og:url" content="https://leadhound.net/get-started">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Get Started | LeadHound">
     <meta name="twitter:description" content="Book a free LeadHound strategy call and tell us what kind of leads your business needs.">
-    <meta name="twitter:image" content="assets/leadhound-social-preview.jpg">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link rel="apple-touch-icon" href="assets/favicon.png">
+    <meta name="twitter:image" content="https://leadhound.net/assets/leadhound-social-preview.jpg">
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="get-started.css">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/get-started.css">
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@graph": [
           {
             "@type": "Organization",
+            "@id": "https://leadhound.net/#organization",
             "name": "LeadHound",
-            "url": "https://leadhound.net",
+            "url": "https://leadhound.net/",
             "email": "sales@leadhound.net",
-            "logo": "https://leadhound.net/assets/leadhound-logo-navbar.png"
+            "logo": "https://leadhound.net/assets/leadhound-logo-navbar.png",
+            "sameAs": []
           },
           {
             "@type": "LocalBusiness",
+            "@id": "https://leadhound.net/#localbusiness",
             "name": "LeadHound",
-            "url": "https://leadhound.net",
+            "url": "https://leadhound.net/",
             "telephone": "0404 243 378",
             "email": "sales@leadhound.net",
-            "areaServed": "Australia"
+            "areaServed": "Australia",
+            "parentOrganization": {
+              "@id": "https://leadhound.net/#organization"
+            }
           },
           {
             "@type": "WebSite",
+            "@id": "https://leadhound.net/#website",
             "name": "LeadHound",
-            "url": "https://leadhound.net"
+            "url": "https://leadhound.net/",
+            "publisher": {
+              "@id": "https://leadhound.net/#organization"
+            }
           }
         ]
       }
@@ -53,7 +63,7 @@
   <body class="funnel-body">
     <header class="site-header funnel-header">
       <a class="brand" href="/" aria-label="LeadHound home">
-        <img class="brand-logo" src="assets/leadhound-logo-navbar.png" alt="LeadHound">
+        <img class="brand-logo" src="/assets/leadhound-logo-navbar.png" alt="LeadHound">
       </a>
       <nav class="main-nav" aria-label="Primary navigation">
         <a href="/#services">Services</a>
@@ -216,6 +226,6 @@
     </main>
 
     <a class="sticky-mobile-cta" href="#lead-form" data-track="cta_click">Start Free Strategy Call</a>
-    <script src="get-started.js"></script>
+    <script src="/get-started.js"></script>
   </body>
 </html>
