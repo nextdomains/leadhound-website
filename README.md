@@ -19,6 +19,8 @@ Sanity is used as the CMS/backend for content. It is not the website host. The w
 |-- sanity/                  # Sanity Studio config and schemas
 |-- scripts/                 # Build and validation scripts
 |-- index.html               # Public website
+|-- get-started.html         # LeadHound lead funnel page
+|-- api/                     # Vercel serverless lead funnel endpoints
 |-- privacy.html             # Privacy page
 |-- terms.html               # Terms page
 |-- styles.css               # Public website styles
@@ -67,6 +69,34 @@ Direct commands:
 node scripts/validate.js
 node scripts/build.js
 ```
+
+## Lead Funnel
+
+The production lead funnel lives at:
+
+```text
+https://www.leadhound.net/get-started
+```
+
+Required Vercel environment variables:
+
+```text
+RESEND_API_KEY=
+RESEND_FROM_EMAIL=LeadHound <hello@leadhound.net>
+LEAD_NOTIFICATION_EMAIL=sales@leadhound.net
+CALENDLY_URL=https://calendly.com/leadhound26
+SANITY_WRITE_TOKEN=
+```
+
+Optional analytics variables:
+
+```text
+NEXT_PUBLIC_GA_ID=
+NEXT_PUBLIC_GTM_ID=
+NEXT_PUBLIC_META_PIXEL_ID=
+```
+
+Resend must have a verified sending domain before emails can be sent to normal recipients. After verifying `leadhound.net` in Resend, set `RESEND_FROM_EMAIL` to a sender on that domain, such as `LeadHound <hello@leadhound.net>`.
 
 ## Sanity CMS Setup
 
@@ -200,8 +230,15 @@ Publish directory: dist
 Vercel settings:
 
 ```text
-Build command: node scripts/build.js
-Output directory: dist
+Build command: npm run build:vercel
+Output directory: .vercel/output
+```
+
+Production deploy command:
+
+```powershell
+npm run build:vercel
+vercel deploy --prebuilt --prod
 ```
 
 ## Deploy Sanity Studio

@@ -3,6 +3,7 @@ import homepage from './homepage'
 import services from './services'
 import testimonials from './testimonials'
 import leadFormSettings from './leadFormSettings'
+import lead from './lead'
 
 export const schemaTypes = [
   siteSettings,
@@ -10,4 +11,5 @@ export const schemaTypes = [
   services,
   testimonials,
   leadFormSettings,
+  lead,
 ]

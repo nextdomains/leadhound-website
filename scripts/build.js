@@ -6,9 +6,14 @@ const dist = path.join(root, "dist");
 
 const include = [
   "index.html",
+  "get-started.html",
+  "get-started.css",
+  "get-started.js",
   "netlify-form.html",
   "privacy.html",
   "terms.html",
+  "robots.txt",
+  "sitemap.xml",
   "styles.css",
   "script.js",
   "content.json",

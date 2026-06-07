@@ -5,8 +5,13 @@ const vm = require("vm");
 const root = path.resolve(__dirname, "..");
 const requiredFiles = [
   "index.html",
+  "get-started.html",
+  "get-started.css",
+  "get-started.js",
   "styles.css",
   "script.js",
+  "api/submit-lead.js",
+  "api/public-config.js",
   "admin.html",
   "admin.css",
   "admin.js",
@@ -14,6 +19,8 @@ const requiredFiles = [
   "sanity-config.js",
   "privacy.html",
   "terms.html",
+  "robots.txt",
+  "sitemap.xml",
   "assets/leadhound-logo-navbar.png",
   "assets/favicon.png",
   "assets/leadhound-social-preview.jpg"
@@ -35,7 +42,7 @@ for (const file of requiredFiles) {
 
 JSON.parse(read("content.json"));
 
-for (const file of ["script.js", "admin.js", "sanity-config.js"]) {
+for (const file of ["script.js", "get-started.js", "admin.js", "sanity-config.js", "api/submit-lead.js", "api/public-config.js"]) {
   new vm.Script(read(file), { filename: file });
 }
 
@@ -61,5 +68,7 @@ assert(html.includes('name="twitter:card" content="summary_large_image"'), "Twit
 assert(read("sanity-config.js").includes('apiVersion: "2026-06-07"'), "Sanity API version is not updated.");
 assert(read("sanity-config.js").includes('projectId: "nvlfyhr7"'), "Sanity project ID is not configured.");
 assert(read("script.js").includes('document.querySelectorAll(".footer .contact-line")'), "Footer contact renderer is not targeting contact lines directly.");
+assert(read("get-started.html").includes('action="/api/submit-lead"') || read("get-started.js").includes('"/api/submit-lead"'), "Get started form is not wired to the Vercel API.");
+assert(read("sitemap.xml").includes("https://leadhound.net/get-started"), "Sitemap is missing /get-started.");
 
 console.log("Validation passed.");
