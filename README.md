@@ -2,32 +2,34 @@
 
 LeadHound is a static marketing website for a lead generation business. The site is built with plain HTML, CSS, and JavaScript, with optional Sanity CMS content loading and a lightweight local preview server.
 
+Sanity is used as the CMS/backend for content. It is not the website host. The website deploys separately to Netlify, Vercel, or another static hosting platform.
+
 ## Tech Stack
 
 - Frontend: HTML, CSS, vanilla JavaScript
 - Local preview API: Node `server.js` or Python `server.py`
-- CMS: Sanity Studio scaffold in `sanity/`
-- Deployment target: Vercel or Netlify as a static site
-
-Sanity is used as the CMS/backend for content. It is not the website host. The website should still deploy separately to Vercel, Netlify, or another static hosting platform.
+- CMS: Sanity Studio in `sanity/`
+- Deployment target: Netlify or Vercel as a static site
 
 ## Project Structure
 
 ```text
 .
-├── assets/                  # Logo and image assets
-├── sanity/                  # Sanity Studio config and schemas
-├── scripts/                 # Build and validation scripts
-├── index.html               # Public website
-├── styles.css               # Public website styles
-├── script.js                # Public website behavior and Sanity loader
-├── content.json             # Fallback content
-├── sanity-config.js         # Public Sanity browser config
-├── admin.html               # Local JSON CMS editor
-├── server.js                # Node local server
-├── server.py                # Python local server fallback
-├── netlify.toml             # Netlify deploy config
-└── vercel.json              # Vercel deploy config
+|-- assets/                  # Logo and image assets
+|-- sanity/                  # Sanity Studio config and schemas
+|-- scripts/                 # Build and validation scripts
+|-- index.html               # Public website
+|-- privacy.html             # Privacy page
+|-- terms.html               # Terms page
+|-- styles.css               # Public website styles
+|-- script.js                # Public website behavior and Sanity loader
+|-- content.json             # Fallback content
+|-- sanity-config.js         # Public Sanity browser config
+|-- admin.html               # Local JSON CMS editor
+|-- server.js                # Node local server
+|-- server.py                # Python local server fallback
+|-- netlify.toml             # Netlify deploy config
+`-- vercel.json              # Vercel deploy config
 ```
 
 ## Local Development
@@ -54,154 +56,156 @@ http://127.0.0.1:4173/admin
 ## Scripts
 
 ```powershell
-node scripts/validate.js
-node scripts/build.js
-```
-
-Package scripts:
-
-```powershell
 npm run lint
 npm run test
 npm run build
 ```
 
-This project currently has no required frontend dependencies. If `npm` is unavailable, the direct `node scripts/...` commands work.
+Direct commands:
+
+```powershell
+node scripts/validate.js
+node scripts/build.js
+```
 
 ## Sanity CMS Setup
 
-1. Create a Sanity project at `https://www.sanity.io/manage`.
-2. Copy `.env.example` to `.env` and fill in:
+Project details:
 
 ```text
-SANITY_PROJECT_ID=your_project_id
-SANITY_DATASET=production
-SANITY_API_VERSION=2026-06-07
-PUBLIC_SITE_URL=https://your-domain.com
+Project ID: nvlfyhr7
+Dataset: production
+API version: 2026-06-07
 ```
 
-3. Copy `sanity/.env.example` to `sanity/.env`:
-
-```text
-SANITY_STUDIO_PROJECT_ID=your_project_id
-SANITY_STUDIO_DATASET=production
-```
-
-4. Update `sanity-config.js`:
+The public website Sanity config is set in `sanity-config.js`:
 
 ```js
 window.LEADHOUND_SANITY = {
-  projectId: "your_project_id",
+  projectId: "nvlfyhr7",
   dataset: "production",
   apiVersion: "2026-06-07",
   useCdn: true
 };
 ```
 
-The website will load Sanity content when configured. If Sanity is empty or unavailable, it falls back to `content.json` and the hardcoded HTML.
+For deploy platform reference, `.env.example` contains:
 
-## Sanity Schemas
+```text
+SANITY_PROJECT_ID=nvlfyhr7
+SANITY_DATASET=production
+SANITY_API_VERSION=2026-06-07
+PUBLIC_SITE_URL=https://your-domain.com
+```
 
-The Studio includes schemas for:
+The Studio environment is set in `sanity/.env` and documented in `sanity/.env.example`:
 
-- Site settings
-- Homepage
-- Services
-- Testimonials
-- Lead form settings
+```text
+SANITY_STUDIO_PROJECT_ID=nvlfyhr7
+SANITY_STUDIO_DATASET=production
+```
 
-Schema files live in `sanity/schemas/`.
+Run the Studio locally:
+
+```powershell
+cd sanity
+npm install
+npm run dev
+```
+
+The website will load Sanity content when documents exist and CORS is configured. If Sanity is empty or unavailable, it falls back to `content.json` and the hardcoded HTML.
+
+## Sanity Studio Content To Add
+
+Inside Sanity Studio, create one document for each of these schemas.
+
+Site Settings:
+- Brand: `LeadHound`
+- SEO Title: `LeadHound | Verified Lead Generation`
+- SEO Description: a short lead generation description for search results
+- Email: `sales@leadhound.net`
+- Phone: `0404 243 378`
+- Logo: optional
+
+Homepage:
+- Hero eyebrow, headline, body, primary CTA, secondary CTA, and badges
+- Stats with softer, verifiable wording
+- Lead Funnels eyebrow, headline, body, and four funnel steps
+
+Services:
+- Eyebrow and headline
+- Service items with tag, title, and body
+
+Testimonials:
+- Eyebrow, headline, and body
+- Testimonial items with name, role, quote, and image URL
+
+Lead Form Settings:
+- Eyebrow, headline, body, button label, success message, and fallback email
+
+Schema files live in `sanity/schemas/` and are loaded through `sanity/schemas/index.ts`.
 
 ## Sanity CORS
 
-In Sanity Manage, add these CORS origins:
+In Sanity Manage -> API -> CORS, add these exact origins with no trailing slash:
 
 ```text
-http://localhost:4173
-http://127.0.0.1:4173
-https://your-production-domain.com
+http://localhost:3333
+http://localhost:3000
+http://localhost:5173
+https://your-live-domain.com
+https://your-deployed-studio-url.sanity.studio
 ```
 
-Enable credentials only if you later add authenticated Sanity requests. For public read-only content, credentials are not needed.
+Credentials settings:
 
-## Deploy Sanity Studio
+- `http://localhost:3333` with credentials
+- `http://localhost:3000` without credentials
+- `http://localhost:5173` without credentials
+- Your live website domain without credentials
+- Your deployed Studio URL with credentials
 
-From the `sanity/` folder:
+## Deploy Website
 
-```powershell
-npm install
-npm run dev
-npm run deploy
-```
+Deploy the public website to Netlify or Vercel.
 
-Sanity Studio deploys separately from the public website.
-
-## Deploy Website to Vercel
-
-1. Push this project to GitHub.
-2. Import the repo in Vercel.
-3. Use these settings:
-
-```text
-Build command: node scripts/build.js
-Output directory: dist
-```
-
-Or with Vercel CLI:
-
-```powershell
-npm install -g vercel
-vercel
-vercel --prod
-```
-
-## Deploy Website to Netlify
-
-Netlify will read `netlify.toml`.
-
-Settings:
+Netlify reads `netlify.toml`:
 
 ```text
 Build command: node scripts/build.js
 Publish directory: dist
 ```
 
-Or with Netlify CLI:
+Vercel settings:
+
+```text
+Build command: node scripts/build.js
+Output directory: dist
+```
+
+## Deploy Sanity Studio
+
+Sanity Studio deploys separately from the public website.
 
 ```powershell
-npm install -g netlify-cli
-netlify deploy
-netlify deploy --prod
+cd sanity
+npm install
+npx sanity deploy
 ```
 
 ## GitHub Push Steps
 
-Install Git if needed:
+From this folder:
 
 ```powershell
-winget install --id Git.Git -e
-```
-
-Then from this folder:
-
-```powershell
-git init
 git add .
-git commit -m "Prepare LeadHound website for deployment"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
-git push -u origin main
+git commit -m "Update Sanity setup"
+git push
 ```
 
 ## Download as ZIP
 
-Option 1: In File Explorer, right-click the `leadify-clone` folder and choose:
-
-```text
-Compress to ZIP file
-```
-
-Option 2: PowerShell:
+PowerShell:
 
 ```powershell
 Compress-Archive -Path .\* -DestinationPath ..\leadhound-website.zip -Force
@@ -213,7 +217,7 @@ Run that command from inside this project folder.
 
 You can share any of these:
 
-- GitHub repo URL after pushing
+- GitHub repo URL
 - ZIP file containing the project
 - Live preview URL from Vercel or Netlify
 - Local screenshots of the site

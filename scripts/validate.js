@@ -59,5 +59,7 @@ assert(html.includes('href="terms.html"'), "Terms footer link is missing.");
 assert(html.includes('property="og:image" content="assets/leadhound-social-preview.jpg"'), "Open Graph image is missing.");
 assert(html.includes('name="twitter:card" content="summary_large_image"'), "Twitter card meta is missing.");
 assert(read("sanity-config.js").includes('apiVersion: "2026-06-07"'), "Sanity API version is not updated.");
+assert(read("sanity-config.js").includes('projectId: "nvlfyhr7"'), "Sanity project ID is not configured.");
+assert(read("script.js").includes('document.querySelectorAll(".footer .contact-line")'), "Footer contact renderer is not targeting contact lines directly.");
 
 console.log("Validation passed.");

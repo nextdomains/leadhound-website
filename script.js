@@ -304,8 +304,9 @@ function renderContent(content) {
   setText(".cta-card .btn-light", content.cta?.button);
 
   setText(".footer p", content.footer?.body);
-  setText(".footer .contact-line:first-of-type", content.site.email);
-  setText(".footer .contact-line:nth-of-type(2)", content.site.phone);
+  const contactLines = document.querySelectorAll(".footer .contact-line");
+  if (contactLines[0] && content.site.email) contactLines[0].textContent = content.site.email;
+  if (contactLines[1] && content.site.phone) contactLines[1].textContent = content.site.phone;
   setText(".footer-bottom span", `(c) ${content.footer?.copyright || "LeadHound 2026. All Rights Reserved."}`);
 }
 
