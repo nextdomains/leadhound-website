@@ -162,7 +162,7 @@ http://localhost:3000
 http://localhost:5173
 https://leadify-clone-five.vercel.app
 https://leadhound-website.netlify.app
-https://your-deployed-studio-url.sanity.studio
+https://leadhound.sanity.studio
 ```
 
 Credentials settings:
@@ -172,7 +172,7 @@ Credentials settings:
 - `http://localhost:5173` without credentials
 - `https://leadify-clone-five.vercel.app` without credentials
 - `https://leadhound-website.netlify.app` without credentials
-- Your deployed Studio URL with credentials
+- `https://leadhound.sanity.studio` with credentials
 
 ## Deploy Website
 
@@ -207,6 +207,12 @@ Output directory: dist
 ## Deploy Sanity Studio
 
 Sanity Studio deploys separately from the public website.
+
+Current Sanity Studio URL:
+
+```text
+https://leadhound.sanity.studio
+```
 
 ```powershell
 cd sanity
