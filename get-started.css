@@ -21,13 +21,16 @@
 }
 
 .funnel-hero h1 {
-  max-width: 940px;
-  font-size: clamp(42px, 6vw, 78px);
+  max-width: 820px;
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1.08;
+  text-wrap: balance;
 }
 
 .funnel-hero p {
-  color: rgba(215, 220, 226, 0.8);
+  color: rgba(235, 240, 246, 0.88);
   font-size: 18px;
+  line-height: 1.68;
 }
 
 .funnel-hero-actions,
@@ -82,7 +85,7 @@
 .funnel-hero-card strong {
   display: block;
   margin: 12px 0;
-  font-size: 54px;
+  font-size: clamp(38px, 5vw, 48px);
   line-height: 1;
 }
 
@@ -371,6 +374,10 @@
 
   .sticky-mobile-cta {
     display: flex;
+  }
+
+  .funnel-body {
+    padding-bottom: 78px;
   }
 }
 

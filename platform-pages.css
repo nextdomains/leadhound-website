@@ -18,14 +18,17 @@
 }
 
 .platform-hero h1 {
-  max-width: 900px;
-  font-size: clamp(42px, 6vw, 78px);
+  max-width: 820px;
+  font-size: clamp(36px, 5vw, 62px);
+  line-height: 1.08;
+  text-wrap: balance;
 }
 
 .platform-hero p {
   max-width: 760px;
-  color: rgba(215, 220, 226, 0.78);
+  color: rgba(235, 240, 246, 0.88);
   font-size: 18px;
+  line-height: 1.68;
 }
 
 .platform-actions {
@@ -159,7 +162,7 @@
   position: fixed;
   right: 18px;
   bottom: 18px;
-  z-index: 90;
+  z-index: 110;
 }
 
 .assistant-toggle {
@@ -245,6 +248,7 @@
 
 .assistant-message p {
   margin: 0;
+  line-height: 1.55;
 }
 
 .assistant-message.user {
@@ -254,11 +258,42 @@
 }
 
 .assistant-typing {
+  display: flex;
+  align-items: center;
+  gap: 5px;
   padding: 0 16px 12px;
-  color: var(--muted);
+  color: #4f5b66;
   background: #f7f9fc;
   font-size: 13px;
   font-weight: 800;
+}
+
+.assistant-typing span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--brand-blue);
+  animation: assistantPulse 0.9s ease-in-out infinite;
+}
+
+.assistant-typing span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.assistant-typing span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes assistantPulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
 }
 
 .assistant-form {
@@ -312,6 +347,44 @@
   cursor: pointer;
 }
 
+.assistant-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.assistant-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 8px 11px;
+  border: 1px solid rgba(0, 108, 255, 0.28);
+  border-radius: 8px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--brand-blue), #0648b8);
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 900;
+  line-height: 1.15;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(0, 108, 255, 0.18);
+}
+
+.assistant-action[href^="mailto"] {
+  color: var(--brand-blue);
+  background: #eef5ff;
+}
+
+.assistant-action:focus,
+.assistant-action:hover,
+.assistant-shortcuts button:focus,
+.assistant-shortcuts button:hover {
+  outline: 2px solid rgba(0, 108, 255, 0.38);
+  outline-offset: 2px;
+}
+
 .calendly-modal[hidden] {
   display: none;
 }
@@ -327,6 +400,7 @@
 }
 
 .calendly-dialog {
+  position: relative;
   width: min(980px, 100%);
   height: min(760px, calc(100vh - 40px));
   overflow: hidden;
@@ -334,6 +408,24 @@
   border-radius: 10px;
   background: #fff;
   box-shadow: 0 28px 90px rgba(0, 0, 0, 0.38);
+}
+
+.calendly-loading {
+  position: absolute;
+  top: 69px;
+  right: 0;
+  left: 0;
+  z-index: 1;
+  padding: 12px 18px;
+  color: #25313e;
+  background: #f7f9fc;
+  font-size: 13px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.calendly-loading[hidden] {
+  display: none;
 }
 
 .calendly-head {
@@ -418,6 +510,19 @@
     max-height: calc(100vh - 310px);
   }
 
+  .assistant-message {
+    max-width: 94%;
+  }
+
+  .assistant-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .assistant-action {
+    width: 100%;
+  }
+
   .assistant-form {
     grid-template-columns: 1fr;
   }
@@ -434,5 +539,9 @@
     width: 100%;
     height: 100vh;
     border-radius: 0;
+  }
+
+  .platform-hero h1 {
+    font-size: clamp(32px, 11vw, 44px);
   }
 }
