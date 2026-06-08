@@ -159,7 +159,7 @@
   position: fixed;
   right: 18px;
   bottom: 18px;
-  z-index: 70;
+  z-index: 90;
 }
 
 .assistant-toggle {
@@ -172,73 +172,214 @@
   font: inherit;
   font-weight: 900;
   padding: 0 18px;
+  cursor: pointer;
 }
 
 .assistant-panel {
   position: absolute;
   right: 0;
   bottom: 62px;
-  width: min(340px, calc(100vw - 32px));
-  padding: 18px;
+  width: min(420px, calc(100vw - 32px));
+  padding: 0;
   display: none;
+  overflow: hidden;
+  color: var(--ink);
 }
 
 .assistant-widget.is-open .assistant-panel {
+  display: grid;
+  grid-template-rows: auto minmax(180px, 1fr) auto auto;
+}
+
+.assistant-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--brand-black), #063c9d);
+}
+
+.assistant-header strong,
+.assistant-header span {
   display: block;
 }
 
-.assistant-panel button,
-.assistant-panel a,
-.assistant-form input {
-  display: block;
-  width: 100%;
-  margin-top: 10px;
-  padding: 10px 12px;
-  border: 1px solid var(--line);
-  border-radius: 7px;
-  background: #fff;
-  text-align: left;
-  font: inherit;
+.assistant-header span {
+  color: rgba(215, 220, 226, 0.78);
+  font-size: 12px;
+}
+
+.assistant-header button {
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
 }
 
 .assistant-messages {
   display: grid;
-  gap: 8px;
-  max-height: 260px;
+  align-content: start;
+  gap: 10px;
+  min-height: 260px;
+  max-height: min(58vh, 480px);
+  padding: 16px;
   overflow-y: auto;
+  background: #f7f9fc;
 }
 
 .assistant-message {
-  padding: 10px 12px;
-  border-radius: 8px;
-  color: var(--ink);
-  background: #f4f6f9;
+  width: fit-content;
+  max-width: 88%;
+  padding: 11px 13px;
+  border-radius: 14px;
+  color: #111820;
+  background: #fff;
   font-size: 14px;
+  box-shadow: 0 8px 22px rgba(17, 24, 32, 0.08);
+}
+
+.assistant-message p {
+  margin: 0;
 }
 
 .assistant-message.user {
+  justify-self: end;
   color: #fff;
   background: #075cff;
 }
 
-.assistant-form label {
-  display: grid;
-  gap: 6px;
-  margin-top: 12px;
+.assistant-typing {
+  padding: 0 16px 12px;
   color: var(--muted);
-  font-size: 12px;
+  background: #f7f9fc;
+  font-size: 13px;
   font-weight: 800;
+}
+
+.assistant-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  padding: 14px;
+  border-top: 1px solid var(--line);
+  background: #fff;
+}
+
+.assistant-form label {
+  display: block;
+}
+
+.assistant-form textarea {
+  width: 100%;
+  min-height: 46px;
+  max-height: 120px;
+  padding: 12px 13px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  background: #fff;
+  font: inherit;
+  resize: vertical;
+}
+
+.assistant-form textarea:focus {
+  outline: 2px solid rgba(0, 108, 255, 0.42);
+  outline-offset: 2px;
 }
 
 .assistant-shortcuts {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 8px;
+  padding: 0 14px 14px;
+  background: #fff;
 }
 
 .assistant-shortcuts button {
+  min-height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  background: #fff;
   text-align: center;
   font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.calendly-modal[hidden] {
+  display: none;
+}
+
+.calendly-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(5, 7, 11, 0.78);
+}
+
+.calendly-dialog {
+  width: min(980px, 100%);
+  height: min(760px, calc(100vh - 40px));
+  overflow: hidden;
+  border: 1px solid rgba(0, 108, 255, 0.35);
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.38);
+}
+
+.calendly-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 14px 18px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--brand-black), var(--brand-charcoal));
+}
+
+.calendly-head h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.calendly-head button {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.calendly-dialog iframe {
+  display: block;
+  width: 100%;
+  height: calc(100% - 116px);
+  border: 0;
+}
+
+.calendly-fallback {
+  margin: 0;
+  padding: 12px 18px;
+  color: var(--muted);
+  background: #f7f9fc;
+  font-size: 13px;
+}
+
+.calendly-fallback a {
+  color: var(--brand-blue);
+  font-weight: 900;
 }
 
 @media (max-width: 900px) {
@@ -248,5 +389,50 @@
   .comparison-table,
   .mini-roi {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .assistant-widget {
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+  }
+
+  .assistant-toggle {
+    width: 100%;
+  }
+
+  .assistant-panel {
+    right: 0;
+    bottom: 60px;
+    width: 100%;
+    max-height: calc(100vh - 84px);
+  }
+
+  .assistant-widget.is-open .assistant-panel {
+    grid-template-rows: auto minmax(240px, 1fr) auto auto;
+  }
+
+  .assistant-messages {
+    max-height: calc(100vh - 310px);
+  }
+
+  .assistant-form {
+    grid-template-columns: 1fr;
+  }
+
+  .assistant-shortcuts {
+    grid-template-columns: 1fr;
+  }
+
+  .calendly-modal {
+    padding: 0;
+  }
+
+  .calendly-dialog {
+    width: 100%;
+    height: 100vh;
+    border-radius: 0;
   }
 }

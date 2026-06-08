@@ -10,6 +10,7 @@ const requiredFiles = [
   "get-started.js",
   "platform-pages.css",
   "platform-pages.js",
+  "leadhound-ui.js",
   "analytics.js",
   "roi-calculator.html",
   "mortgage-leads.html",
@@ -69,7 +70,7 @@ for (const file of requiredFiles) {
 
 JSON.parse(read("content.json"));
 
-for (const file of ["script.js", "get-started.js", "platform-pages.js", "analytics.js", "admin.js", "sanity-config.js", "api/submit-lead.js", "api/public-config.js", "api/lead-magnet.js", "api/ai-chat.js", "api/website-audit.js"]) {
+for (const file of ["script.js", "get-started.js", "platform-pages.js", "leadhound-ui.js", "analytics.js", "admin.js", "sanity-config.js", "api/submit-lead.js", "api/public-config.js", "api/lead-magnet.js", "api/ai-chat.js", "api/website-audit.js"]) {
   new vm.Script(read(file), { filename: file });
 }
 

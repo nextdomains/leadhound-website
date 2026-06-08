@@ -53,9 +53,24 @@ function fallbackAnswer(message, kb) {
   return "LeadHound helps Australian businesses generate, qualify, and route higher-quality leads using conversion funnels, appointment booking, CRM setup, lead lists, ROI planning, and strategy reports. What industry are you in?";
 }
 
+function asksForPricing(message) {
+  return /price|pricing|cost|budget|cpl|lead cost|how much/i.test(message);
+}
+
+function containsUnverifiedPricing(answer) {
+  return /(?:A\$|AUD|\$)\s?\d|\d+\s?(?:dollars|aud|per lead|cpl)/i.test(answer);
+}
+
+function isLowQualityAnswer(answer) {
+  return !answer || answer.trim().length < 80 || /^user safety\s*:/i.test(answer.trim());
+}
+
 async function openRouterAnswer(message, history, kb) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 12000);
   const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
     method: "POST",
+    signal: controller.signal,
     headers: {
       Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
       "Content-Type": "application/json",
@@ -67,16 +82,19 @@ async function openRouterAnswer(message, history, kb) {
       messages: [
         {
           role: "system",
-          content: `You are the LeadHound AI Assistant. Use this knowledge base: ${JSON.stringify(kb)}. Keep answers short, professional, sales-helpful, and honest. Do not invent guarantees, fake clients, fake case studies, legal advice, or financial advice. Offer the Calendly booking link when useful.`
+          content: `You are the LeadHound AI Assistant. Use only this knowledge base: ${JSON.stringify(kb)}. Keep answers short, professional, sales-helpful, and honest. Do not invent guarantees, fake clients, fake case studies, legal advice, financial advice, or fixed prices. There is no published LeadHound price list or CPL guarantee in the knowledge base. If asked about cost, say pricing depends on industry, lead type, target volume, market competition, budget, and follow-up capacity, then recommend the ROI calculator and free strategy call. Do not mention specific dollar amounts unless the user supplied them or they are clearly calculator estimates. Offer the Calendly booking link when useful.`
         },
         ...history.slice(-6),
         { role: "user", content: message }
       ]
     })
-  });
+  }).finally(() => clearTimeout(timeout));
   const payload = await response.json().catch(() => ({}));
   if (!response.ok) throw new Error(payload.error?.message || "AI unavailable");
-  return payload.choices?.[0]?.message?.content || fallbackAnswer(message, kb);
+  const answer = payload.choices?.[0]?.message?.content || fallbackAnswer(message, kb);
+  if (isLowQualityAnswer(answer)) return fallbackAnswer(message, kb);
+  if (asksForPricing(message) && containsUnverifiedPricing(answer)) return fallbackAnswer(message, kb);
+  return answer;
 }
 
 module.exports = async function handler(req, res) {

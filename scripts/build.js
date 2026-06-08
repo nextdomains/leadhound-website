@@ -11,6 +11,7 @@ const include = [
   "get-started.js",
   "platform-pages.css",
   "platform-pages.js",
+  "leadhound-ui.js",
   "analytics.js",
   "roi-calculator.html",
   "mortgage-leads.html",
