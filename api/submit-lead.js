@@ -112,6 +112,52 @@ function growthReport(data, leadScore) {
   };
 }
 
+async function aiGrowthReport(data, fallbackReport) {
+  if (!process.env.OPENROUTER_API_KEY) return fallbackReport;
+  try {
+    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+        "Content-Type": "application/json",
+        "HTTP-Referer": process.env.OPENROUTER_SITE_URL || "https://www.leadhound.net",
+        "X-Title": process.env.OPENROUTER_SITE_NAME || "LeadHound"
+      },
+      body: JSON.stringify({
+        model: process.env.OPENROUTER_MODEL || "openrouter/free",
+        messages: [
+          {
+            role: "system",
+            content: "Create a concise LeadHound Growth Report as strict JSON only. Do not promise guaranteed results. Do not give legal or financial advice. Keys: opportunityScore, recommendedMonthlyBudget, estimatedMonthlyLeads, estimatedCustomers, estimatedRevenuePotential, suggestedChannels, funnelRecommendation, crmAutomationRecommendation, nextStep."
+          },
+          {
+            role: "user",
+            content: JSON.stringify({ lead: data, fallbackReport })
+          }
+        ]
+      })
+    });
+    const payload = await response.json().catch(() => ({}));
+    const text = payload.choices?.[0]?.message?.content || "";
+    const parsed = JSON.parse(text.replace(/^```json\s*/i, "").replace(/```$/i, "").trim());
+    return {
+      ...fallbackReport,
+      opportunityScore: sanitize(parsed.opportunityScore, 60),
+      recommendedMonthlyBudget: sanitize(parsed.recommendedMonthlyBudget, 80) || fallbackReport.recommendedMonthlyBudget,
+      estimatedMonthlyLeads: sanitize(parsed.estimatedMonthlyLeads, 80) || fallbackReport.estimatedMonthlyLeads,
+      estimatedCustomers: sanitize(parsed.estimatedCustomers, 80),
+      estimatedRevenuePotential: sanitize(parsed.estimatedRevenuePotential, 120),
+      recommendedChannels: Array.isArray(parsed.suggestedChannels) ? parsed.suggestedChannels.map((item) => sanitize(item, 80)).slice(0, 6) : fallbackReport.recommendedChannels,
+      suggestedFunnelType: sanitize(parsed.funnelRecommendation, 160) || fallbackReport.suggestedFunnelType,
+      crmAutomationRecommendation: sanitize(parsed.crmAutomationRecommendation, 220),
+      nextBestAction: sanitize(parsed.nextStep, 220) || fallbackReport.nextBestAction
+    };
+  } catch (error) {
+    console.error("LeadHound AI strategy report fallback used", error);
+    return fallbackReport;
+  }
+}
+
 async function sanityRequest(query, params = {}) {
   const url = `https://${SANITY_PROJECT_ID}.api.sanity.io/v${SANITY_API_VERSION}/data/query/${SANITY_DATASET}`;
   const response = await fetch(url, {
@@ -238,7 +284,7 @@ module.exports = async function handler(req, res) {
     const leadId = await createLeadId();
     const submissionDate = new Date().toISOString();
     const leadScore = scoreLead(data);
-    const strategyReport = growthReport(data, leadScore);
+    const strategyReport = await aiGrowthReport(data, growthReport(data, leadScore));
     const leadDoc = {
       _type: "lead",
       leadId,

@@ -188,7 +188,8 @@
 }
 
 .assistant-panel button,
-.assistant-panel a {
+.assistant-panel a,
+.assistant-form input {
   display: block;
   width: 100%;
   margin-top: 10px;
@@ -198,6 +199,46 @@
   background: #fff;
   text-align: left;
   font: inherit;
+}
+
+.assistant-messages {
+  display: grid;
+  gap: 8px;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.assistant-message {
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: var(--ink);
+  background: #f4f6f9;
+  font-size: 14px;
+}
+
+.assistant-message.user {
+  color: #fff;
+  background: #075cff;
+}
+
+.assistant-form label {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.assistant-shortcuts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.assistant-shortcuts button {
+  text-align: center;
+  font-size: 13px;
 }
 
 @media (max-width: 900px) {

@@ -11,6 +11,11 @@ import socialProofItem from './socialProofItem'
 import leadMagnet from './leadMagnet'
 import leadMagnetDownload from './leadMagnetDownload'
 import roiCalculatorSettings from './roiCalculatorSettings'
+import caseStudy from './caseStudy'
+import category from './category'
+import author from './author'
+import industryBenchmark from './industryBenchmark'
+import websiteAudit from './websiteAudit'
 
 export const schemaTypes = [
   siteSettings,
@@ -26,4 +31,9 @@ export const schemaTypes = [
   leadMagnet,
   leadMagnetDownload,
   roiCalculatorSettings,
+  caseStudy,
+  category,
+  author,
+  industryBenchmark,
+  websiteAudit,
 ]

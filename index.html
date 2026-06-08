@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LeadHound | Verified Lead Generation</title>
     <meta name="description" content="LeadHound builds verified lead generation funnels, targeted data campaigns, and CRM-ready workflows for growth-focused Australian service businesses.">
-    <link rel="canonical" href="https://leadhound.net/">
+    <link rel="canonical" href="https://www.leadhound.net/">
     <meta property="og:type" content="website">
     <meta property="og:title" content="LeadHound | Verified Lead Generation">
     <meta property="og:description" content="Verified lead generation funnels, targeted data campaigns, and CRM-ready workflows for Australian service businesses.">
-    <meta property="og:image" content="https://leadhound.net/assets/leadhound-social-preview.jpg">
-    <meta property="og:url" content="https://leadhound.net/">
+    <meta property="og:image" content="https://www.leadhound.net/assets/leadhound-social-preview.jpg">
+    <meta property="og:url" content="https://www.leadhound.net/">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="LeadHound | Verified Lead Generation">
     <meta name="twitter:description" content="Verified lead generation funnels, targeted data campaigns, and CRM-ready workflows for Australian service businesses.">
-    <meta name="twitter:image" content="https://leadhound.net/assets/leadhound-social-preview.jpg">
+    <meta name="twitter:image" content="https://www.leadhound.net/assets/leadhound-social-preview.jpg">
     <link rel="icon" type="image/png" href="/assets/favicon.png">
     <link rel="apple-touch-icon" href="/assets/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,32 +28,32 @@
         "@graph": [
           {
             "@type": "Organization",
-            "@id": "https://leadhound.net/#organization",
+            "@id": "https://www.leadhound.net/#organization",
             "name": "LeadHound",
-            "url": "https://leadhound.net/",
+            "url": "https://www.leadhound.net/",
             "email": "sales@leadhound.net",
-            "logo": "https://leadhound.net/assets/leadhound-logo-navbar.png",
+            "logo": "https://www.leadhound.net/assets/leadhound-logo-navbar.png",
             "sameAs": []
           },
           {
             "@type": "LocalBusiness",
-            "@id": "https://leadhound.net/#localbusiness",
+            "@id": "https://www.leadhound.net/#localbusiness",
             "name": "LeadHound",
-            "url": "https://leadhound.net/",
+            "url": "https://www.leadhound.net/",
             "telephone": "0404 243 378",
             "email": "sales@leadhound.net",
             "areaServed": "Australia",
             "parentOrganization": {
-              "@id": "https://leadhound.net/#organization"
+              "@id": "https://www.leadhound.net/#organization"
             }
           },
           {
             "@type": "WebSite",
-            "@id": "https://leadhound.net/#website",
+            "@id": "https://www.leadhound.net/#website",
             "name": "LeadHound",
-            "url": "https://leadhound.net/",
+            "url": "https://www.leadhound.net/",
             "publisher": {
-              "@id": "https://leadhound.net/#organization"
+              "@id": "https://www.leadhound.net/#organization"
             }
           }
         ]
@@ -627,16 +627,25 @@
     </footer>
 
     <script src="/sanity-config.js"></script>
+    <script src="/analytics.js"></script>
     <script src="/script.js"></script>
     <div class="assistant-widget" data-assistant>
       <button class="assistant-toggle" type="button" data-assistant-toggle>LeadHound Assistant</button>
       <div class="assistant-panel">
-        <h3>How can LeadHound help?</h3>
-        <p>Choose a quick path. This assistant uses predefined guidance for now.</p>
-        <a href="/get-started">I want better leads</a>
-        <a href="/roi-calculator">Calculate ROI</a>
-        <a href="/mortgage-leads">Mortgage leads</a>
-        <a href="/lead-generation-blueprint">Get the blueprint</a>
+        <h3>LeadHound AI Assistant</h3>
+        <div class="assistant-messages" data-assistant-messages aria-live="polite"></div>
+        <form class="assistant-form" data-assistant-form>
+          <label>
+            <span>Ask about leads, ROI, pricing, or booking</span>
+            <input name="message" autocomplete="off" placeholder="What kind of leads do you need?">
+          </label>
+          <button class="btn btn-primary" type="submit">Send</button>
+        </form>
+        <div class="assistant-shortcuts">
+          <button type="button" data-assistant-prompt="What does LeadHound do?">Services</button>
+          <button type="button" data-assistant-prompt="Can you help me calculate ROI?">ROI</button>
+          <button type="button" data-assistant-prompt="I want to book a strategy call">Book</button>
+        </div>
       </div>
     </div>
     <script src="/platform-pages.js"></script>

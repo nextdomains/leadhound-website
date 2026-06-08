@@ -390,13 +390,10 @@ function updateRoiCalculator(changedField) {
   const monthlySpend = readRoiValue("monthlySpend");
   const costPerLead = readRoiValue("costPerLead");
   const conversionRate = readRoiValue("conversionRate") / 100;
-  const closeRate = readRoiValue("closeRate") / 100;
-  const monthlyLeadTarget = readRoiValue("monthlyLeadTarget");
   const averageCustomerValue = readRoiValue("averageCustomerValue");
 
-  const spendBasedLeads = costPerLead > 0 ? monthlySpend / costPerLead : 0;
-  const monthlyLeads = monthlyLeadTarget > 0 ? Math.min(spendBasedLeads, monthlyLeadTarget) : spendBasedLeads;
-  const monthlyCustomers = monthlyLeads * conversionRate * closeRate;
+  const monthlyLeads = costPerLead > 0 ? monthlySpend / costPerLead : 0;
+  const monthlyCustomers = monthlyLeads * conversionRate;
   const monthlyRevenue = monthlyCustomers * averageCustomerValue;
   const monthlyProfit = monthlyRevenue - monthlySpend;
   const roiPercent = monthlySpend > 0 ? (monthlyProfit / monthlySpend) * 100 : 0;

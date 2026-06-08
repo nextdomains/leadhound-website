@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://leadhound.net/sitemap.xml
+Sitemap: https://www.leadhound.net/sitemap.xml

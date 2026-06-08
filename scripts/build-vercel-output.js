@@ -7,6 +7,7 @@ const output = path.join(root, ".vercel", "output");
 const outputStatic = path.join(output, "static");
 const outputFunctions = path.join(output, "functions");
 const api = path.join(root, "api");
+const data = path.join(root, "data");
 
 function copyRecursive(source, target) {
   const stat = fs.statSync(source);
@@ -32,6 +33,9 @@ if (fs.existsSync(api)) {
     const functionDir = path.join(outputFunctions, "api", `${name}.func`);
     fs.mkdirSync(functionDir, { recursive: true });
     fs.copyFileSync(path.join(api, file), path.join(functionDir, "index.js"));
+    if (fs.existsSync(data)) {
+      copyRecursive(data, path.join(functionDir, "data"));
+    }
     fs.writeFileSync(
       path.join(functionDir, ".vc-config.json"),
       JSON.stringify({ runtime: "nodejs20.x", handler: "index.js", launcherType: "Nodejs" }, null, 2)
@@ -50,7 +54,7 @@ fs.writeFileSync(
           has: [{ type: "host", value: "leadify-clone-five.vercel.app" }],
           status: 308,
           headers: {
-            Location: "https://leadhound.net/$1"
+            Location: "https://www.leadhound.net/$1"
           }
         },
         {

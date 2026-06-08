@@ -1,0 +1,50 @@
+{
+  "brand": "LeadHound",
+  "tone": "Professional, concise, confident, helpful, Australian, conversion-focused.",
+  "contact": {
+    "email": "sales@leadhound.net",
+    "phone": "0404 243 378",
+    "calendly": "https://calendly.com/leadhound26"
+  },
+  "services": [
+    "Pay Per Lead campaigns",
+    "Appointment Bookings",
+    "CRM Setup and lead routing",
+    "Lead Lists",
+    "Lead funnels",
+    "ROI planning",
+    "Website audit"
+  ],
+  "industries": [
+    "Mortgage & Finance",
+    "Solar",
+    "Legal",
+    "Insurance",
+    "Real Estate",
+    "Trades",
+    "Ecommerce"
+  ],
+  "faqs": [
+    {
+      "question": "What does LeadHound do?",
+      "answer": "LeadHound builds lead generation funnels, qualification workflows, CRM-ready routing, ROI calculators, and strategy reports for Australian businesses."
+    },
+    {
+      "question": "Do you guarantee results?",
+      "answer": "No. LeadHound models likely outcomes and builds conversion systems, but actual results vary by offer, industry, location, competition, budget, and sales follow-up."
+    },
+    {
+      "question": "What is the next step?",
+      "answer": "The best next step is a free Lead Strategy Call: https://calendly.com/leadhound26."
+    },
+    {
+      "question": "Who is LeadHound for?",
+      "answer": "LeadHound helps Australian businesses that want higher-quality enquiries across finance, solar, legal, insurance, real estate, trades, ecommerce, and B2B services."
+    }
+  ],
+  "disclaimers": [
+    "Estimates are for illustration only and actual results may vary.",
+    "LeadHound does not provide legal or financial advice.",
+    "Do not invent fake guarantees, fake client names, fake case studies, or fake results."
+  ]
+}

@@ -10,6 +10,7 @@ const requiredFiles = [
   "get-started.js",
   "platform-pages.css",
   "platform-pages.js",
+  "analytics.js",
   "roi-calculator.html",
   "mortgage-leads.html",
   "solar-leads.html",
@@ -17,6 +18,16 @@ const requiredFiles = [
   "insurance-leads.html",
   "real-estate-leads.html",
   "tradie-leads.html",
+  "ecommerce-leads.html",
+  "lead-cost-calculator.html",
+  "website-audit.html",
+  "case-studies.html",
+  "lead-generation-index.html",
+  "academy.html",
+  "client-portal.html",
+  "mortgage-leads-sydney.html",
+  "solar-leads-brisbane.html",
+  "legal-leads-melbourne.html",
   "lead-generation-blueprint.html",
   "australian-lead-cost-report.html",
   "blog.html",
@@ -25,6 +36,9 @@ const requiredFiles = [
   "api/submit-lead.js",
   "api/public-config.js",
   "api/lead-magnet.js",
+  "api/ai-chat.js",
+  "api/website-audit.js",
+  "data/leadhound-knowledge.json",
   "admin.html",
   "admin.css",
   "admin.js",
@@ -55,7 +69,7 @@ for (const file of requiredFiles) {
 
 JSON.parse(read("content.json"));
 
-for (const file of ["script.js", "get-started.js", "platform-pages.js", "admin.js", "sanity-config.js", "api/submit-lead.js", "api/public-config.js", "api/lead-magnet.js"]) {
+for (const file of ["script.js", "get-started.js", "platform-pages.js", "analytics.js", "admin.js", "sanity-config.js", "api/submit-lead.js", "api/public-config.js", "api/lead-magnet.js", "api/ai-chat.js", "api/website-audit.js"]) {
   new vm.Script(read(file), { filename: file });
 }
 
@@ -76,15 +90,15 @@ assert(html.includes('data-netlify="true"'), "Lead form is missing Netlify Forms
 assert(html.includes('name="leadhound-enquiry"'), "Lead form is missing a production form name.");
 assert(html.includes('href="/privacy"'), "Privacy Policy footer link is missing.");
 assert(html.includes('href="/terms"'), "Terms footer link is missing.");
-assert(html.includes('property="og:image" content="https://leadhound.net/assets/leadhound-social-preview.jpg"'), "Open Graph image is missing.");
-assert(html.includes('rel="canonical" href="https://leadhound.net/"'), "Homepage canonical URL is missing.");
+assert(html.includes('property="og:image" content="https://www.leadhound.net/assets/leadhound-social-preview.jpg"'), "Open Graph image is missing.");
+assert(html.includes('rel="canonical" href="https://www.leadhound.net/"'), "Homepage canonical URL is missing.");
 assert(html.includes('name="twitter:card" content="summary_large_image"'), "Twitter card meta is missing.");
 assert(read("sanity-config.js").includes('apiVersion: "2026-06-07"'), "Sanity API version is not updated.");
 assert(read("sanity-config.js").includes('projectId: "nvlfyhr7"'), "Sanity project ID is not configured.");
 assert(read("script.js").includes('document.querySelectorAll(".footer .contact-line")'), "Footer contact renderer is not targeting contact lines directly.");
 assert(read("get-started.html").includes('action="/api/submit-lead"') || read("get-started.js").includes('"/api/submit-lead"'), "Get started form is not wired to the Vercel API.");
-assert(read("sitemap.xml").includes("https://leadhound.net/get-started"), "Sitemap is missing /get-started.");
-assert(read("sitemap.xml").includes("https://leadhound.net/roi-calculator"), "Sitemap is missing /roi-calculator.");
+assert(read("sitemap.xml").includes("https://www.leadhound.net/get-started"), "Sitemap is missing /get-started.");
+assert(read("sitemap.xml").includes("https://www.leadhound.net/roi-calculator"), "Sitemap is missing canonical www /roi-calculator.");
 assert(read("index.html").includes('id="roi"'), "Homepage ROI anchor is missing.");
 assert(read("index.html").includes("LeadHound Assistant"), "Assistant placeholder is missing.");
 
